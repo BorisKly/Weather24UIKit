@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import MapKit
 
 protocol  MainViewControllerDelegate: AnyObject {
-    func doSmth()
+    func fetchWeather(value: CLLocationCoordinate2D)
 }
 
 class MainViewController: UIViewController,
@@ -25,9 +26,20 @@ class MainViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView?.delegate = self
     }
     
-    func doSmth() {
+    func fetchWeather(value: CLLocationCoordinate2D) {
+        print(#function)
+        NetworkManager.shared.fetchWeather(value: value) { weatherData in
+            print(weatherData.country)
+            DispatchQueue.main.async {
+                self.mainView?.updateWeatherLabel(with: "\(weatherData.country) \(weatherData.temperature)F")
+                        }
+        } onError: { error in
+            print(error.localizedDescription)
+        }
+
     }
 
 
