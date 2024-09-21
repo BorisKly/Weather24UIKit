@@ -25,8 +25,7 @@ class NetworkManager {
     
     public static let shared = NetworkManager()
     private init() {}
-
-    public func weatherCoordinate(value: CLLocationCoordinate2D,
+    public func fetchWeather(value: CLLocationCoordinate2D,
                         onSuccess: @escaping (WeatherData) -> (),
                         onError: @escaping (Error) ->()) {
 
