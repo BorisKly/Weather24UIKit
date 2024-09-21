@@ -5,6 +5,8 @@
 //  Created by Borys Klykavka on 21.09.2024.
 //
 import Foundation
+import MapKit
+
 
 struct CoordinateValue {
     var lat: Double
@@ -22,7 +24,6 @@ class NetworkManager {
     let host = "api.openweathermap.org"
     
     public static let shared = NetworkManager()
-   
     private init() {}
 
     public func weatherCoordinate(value: CLLocationCoordinate2D,
